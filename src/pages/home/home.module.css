@@ -1,0 +1,43 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 2rem 10rem;
+}
+
+.blogPreview {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 16px;
+    margin: 10px 0;
+    border-bottom: 1px solid #fafafa;
+    cursor: pointer;
+}
+
+.blogPreview a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.blogPreview:hover {
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blogPreview h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 8px;
+}
+
+.loading {
+    color: gray;
+    font-size: 18px;
+}
+
+.error {
+    color: gray;
+    font-size: 18px;
+}
