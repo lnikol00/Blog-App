@@ -4,10 +4,10 @@ import styles from "./home.module.css"
 
 interface BlogProps {
     title: string
-    blogs: BlogsItems[],
+    blogs: ToDoItems[],
 }
 
-interface BlogsItems {
+interface ToDoItems {
     id: number,
     title: string,
     author: string,
@@ -20,6 +20,7 @@ function BlogList(props: BlogProps) {
     return (
         <div>
             <h2>{title}</h2>
+            <h2></h2>
             {blogs.map((blog) => {
                 return (
                     <div className={styles.blogPreview} key={blog.id}>

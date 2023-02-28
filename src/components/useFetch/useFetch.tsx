@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-function useFetch<ToDoItems>(url: string, initialState: ToDoItems) {
-    const [data, setData] = useState<ToDoItems>(initialState)
+function useFetch<T>(url: string, initialState: T): [T, boolean, null] {
+    const [data, setData] = useState<T>(initialState)
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
     useEffect(() => {
@@ -25,7 +25,7 @@ function useFetch<ToDoItems>(url: string, initialState: ToDoItems) {
         }, 1000)
 
     }, [url])
-    return { data, isPending, error }
+    return [data, isPending, error]
 }
 
 export default useFetch

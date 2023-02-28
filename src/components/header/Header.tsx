@@ -18,7 +18,7 @@ function Header() {
 
     return (
         <div className={styles.headerContainer}>
-            <h1>Blog list</h1>
+            <h1>The Daily Bugle</h1>
             <div className={styles.menuItem} onClick={handleChange}>
                 <i className={open ? "fa fa-times" : "fa fa-bars"}></i>
             </div>
@@ -29,11 +29,11 @@ function Header() {
                             <a href={item.url} className={styles.menuLinks} >
                                 <span>{item.icon}</span>
                                 {item.name}
-
                             </a>
                         </li>
                     )
                 })}
+                {/* <a>Login</a> */}
             </div>
         </div>
     )

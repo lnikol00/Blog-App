@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../components/useFetch/useFetch';
 import styles from "./home.module.css"
@@ -11,18 +11,13 @@ interface ToDoItems {
 }
 
 function BlogDetails() {
-    const { id } = useParams();
-    const { data, isPending, error } = useFetch<ToDoItems[]>('http://localhost:8000/blogs' + id, [])
+    const params = useParams()
+    const [data, isPending, error] = useFetch<ToDoItems[]>(`http://localhost:8000/blogs${params.id}`, [])
 
     return (
         <div className={styles.mainContainer}>
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
-            {data &&
-                <article>
-
-                </article>
-            }
         </div>
     )
 }

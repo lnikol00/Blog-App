@@ -7,7 +7,6 @@ import Home from './pages/home/Home';
 import Create from './pages/Create/Create';
 import BlogDetails from './pages/home/BlogDetails';
 
-
 function App() {
   return (
     < div className="App" >

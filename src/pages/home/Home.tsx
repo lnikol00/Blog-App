@@ -1,5 +1,6 @@
 import styles from "./home.module.css"
 import BlogList from './BlogList'
+import { Link } from 'react-router-dom'
 import useFetch from '../../components/useFetch/useFetch'
 
 interface ToDoItems {
@@ -10,7 +11,7 @@ interface ToDoItems {
 }
 
 function Home() {
-    const { data, isPending, error } = useFetch<ToDoItems[]>('http://localhost:8000/blogs', []);
+    const [data, isPending, error] = useFetch<ToDoItems[]>('http://localhost:8000/blogs', []);
     return (
         <div className={styles.mainContainer}>
             {isPending && <div className={styles.loading}>Loading...</div>}

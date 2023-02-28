@@ -21,6 +21,7 @@
     list-style: none;
     text-align: center;
     width: 70vw;
+    font-weight: 600;
     justify-content: end;
     margin-right: 2rem;
     font-size: 18px;
@@ -92,7 +93,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        transform: translate(-100%, 20%);
+        transform: translate(-100%, 25%);
         font-size: 30px;
         cursor: pointer;
     }
