@@ -1,22 +1,22 @@
 {
-    "blogs": [
-        {
-            "id": 1,
-            "title": "My New Website",
-            "author": "Luka",
-            "body": "lorem ispu..."
-        },
-        {
-            "id": 2,
-            "title": "Welcome party!",
-            "author": "Marta",
-            "body": "lorem ispu..."
-        },
-        {
-            "id": 3,
-            "title": "Typescript learning",
-            "author": "Luka",
-            "body": "lorem ispu..."
-        }
-    ]
+  "blogs": [
+    {
+      "id": 1,
+      "title": "My New Website",
+      "author": "Luka",
+      "body": "lorem ispu..."
+    },
+    {
+      "id": 2,
+      "title": "Welcome party!",
+      "author": "Marta",
+      "body": "lorem ispu..."
+    },
+    {
+      "id": 3,
+      "title": "Typescript learning",
+      "author": "Luka",
+      "body": "lorem ispu..."
+    }
+  ]
 }
