@@ -10,11 +10,24 @@ function Create() {
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [author, setAuthor] = useState("Luka")
+    const [disabled, setDisabled] = useState(true)
 
     const handletitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value === "") {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(false)
+        }
         setTitle(event.target.value)
     }
     const handlebody = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if (event.target.value === "") {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(false)
+        }
         setBody(event.target.value)
     }
     const handleauthor = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,7 +36,7 @@ function Create() {
 
     const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const blog = { title, author, body }
+        const blog = { title, body, author }
 
         fetch('http://localhost:8000/blogs', {
             method: 'POST',
@@ -58,7 +71,7 @@ function Create() {
                     <option value="Luka">Luka</option>
                     <option value="Marta">Marta</option>
                 </select>
-                <button>Add Blog</button>
+                <button disabled={disabled}>Add Blog</button>
             </form>
         </div>
     )

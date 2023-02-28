@@ -47,3 +47,7 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.mainContainer button:disabled {
+    cursor: not-allowed;
+}
