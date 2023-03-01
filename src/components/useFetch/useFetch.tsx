@@ -6,25 +6,22 @@ function useFetch<T>(url: string, initialState: T): [T, boolean, null] {
     const [error, setError] = useState(null)
     // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
     useEffect(() => {
-        setTimeout(() => {
-            fetch(url)
-                .then(res => {
-                    if (!res.ok) {
-                        throw Error('Sorry, we could not fetch the data!')
-                    }
-                    return res.json()
-                })
-                .then(data => {
-                    setData(data)
-                    setIsPending(false)
-                    setError(null)
-                })
-                .catch(err => {
-                    setIsPending(false)
-                    setError(err.message)
-                })
-        }, 1000)
-
+        fetch(url)
+            .then(res => {
+                if (!res.ok) {
+                    throw Error('Sorry, we could not fetch the data!')
+                }
+                return res.json()
+            })
+            .then(data => {
+                setData(data)
+                setIsPending(false)
+                setError(null)
+            })
+            .catch(err => {
+                setIsPending(false)
+                setError(err.message)
+            })
     }, [url])
     return [data, isPending, error]
 }

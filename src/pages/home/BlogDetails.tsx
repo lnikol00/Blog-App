@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../../components/useFetch/useFetch';
 import styles from "./home.module.css"
@@ -14,9 +13,8 @@ function BlogDetails() {
     const params = useParams()
     const navigate = useNavigate();
     const [data, isPending, error] = useFetch<ToDoItems[]>(`http://localhost:8000/blogs${params.id}`, [])
-
     // const handleClick = () => {
-    //     fetch(`http://localhost:8000/blogs${params.id}`, {
+    //     fetch(`http://localhost:8000/blogs`, {
     //         method: 'DELETE',
     //     }).then(() => {
     //         navigate("/");
@@ -27,10 +25,13 @@ function BlogDetails() {
         <div className={styles.mainContainer}>
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
-            {data &&
-                <article>
-                    {/* <button onClick={handleClick}>Delete</button> */}
-                </article>}
+            <>
+                {data &&
+                    <article>
+                        {/* <button onClick={handleClick}>Delete</button> */}
+                    </article>
+                }
+            </>
         </div>
     )
 }
