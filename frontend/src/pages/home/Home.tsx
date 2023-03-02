@@ -1,8 +1,6 @@
 import styles from "./home.module.css"
 import BlogList from './BlogList'
-import { Link } from 'react-router-dom'
 import useFetch from '../../components/useFetch/useFetch'
-import { useEffect, useState } from "react"
 
 interface ToDoItems {
     id: number,
@@ -13,6 +11,7 @@ interface ToDoItems {
 
 function Home() {
     const [data, isPending, error] = useFetch<ToDoItems[]>('http://localhost:8000/blogs', []);
+    // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
     return (
         <div className={styles.mainContainer}>
             {isPending && <div className={styles.loading}>Loading...</div>}

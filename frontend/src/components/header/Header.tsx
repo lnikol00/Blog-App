@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import styles from "./header.module.css"
 import { HeaderData } from './HeaderData'
+import * as FaIcons from "react-icons/fa"
 
 
 export interface HeaderProps {
@@ -27,13 +28,14 @@ function Header() {
                     return (
                         <li key={index}>
                             <a href={item.url} className={styles.menuLinks} >
-                                <span>{item.icon}</span>
                                 {item.name}
                             </a>
                         </li>
                     )
                 })}
-                {/* <a>Login</a> */}
+                <li>
+                    <a href='login' className={styles.menuLinks}>Log in</a>
+                </li>
             </div>
         </div>
     )
