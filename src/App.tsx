@@ -7,6 +7,8 @@ import Home from './pages/home/Home';
 import Create from './pages/Create/Create';
 import BlogDetails from './pages/home/BlogDetails';
 import NotFound from './pages/NotFound/NotFound';
+import Login from './pages/Login/Login';
+import Register from './pages/Login/Register';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path='create' element={<Create />} />
             <Route path='blogs/:id' element={<BlogDetails />} />
+            <Route path='login' element={<Login />} />
+            <Route path='register' element={<Register />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

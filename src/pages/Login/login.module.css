@@ -1,0 +1,90 @@
+.mainContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(188, 110, 110);
+    padding: 20px;
+}
+
+.mainContainer form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+}
+
+.mainContainer input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    margin: 10px 0px;
+    width: 300px;
+}
+
+.mainContainer label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.mainContainer button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+.mainContainer a {
+    color: black;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: 0px;
+    width: 300px;
+}
+
+.instructions svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+span svg {
+    font-size: 26px;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
