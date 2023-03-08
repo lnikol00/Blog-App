@@ -77,14 +77,9 @@
 
 .valid {
     color: limegreen;
-    margin-left: 0.25rem;
-}
 
-span svg {
-    font-size: 26px;
 }
 
 .invalid {
     color: red;
-    margin-left: 0.25rem;
 }

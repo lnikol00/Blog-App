@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from '../../data/api/axios';
 import * as AiIcons from "react-icons/ai"
 import * as BsIcons from "react-icons/bs"
 import * as IoIcons from "react-icons/io"
@@ -8,6 +9,7 @@ import styles from "./login.module.css"
 
 const USER_REGEX = /^[A-Za-z0-9-_]{4,24}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
+const REGISTER_URL = '/register'
 
 function Register() {
     const userRef = useRef<null | HTMLInputElement>(null)
@@ -75,6 +77,41 @@ function Register() {
         setErrMsg('')
     }, [user, pwd, matchPwd])
 
+    const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        //if something fails with button disable
+        // const v1 = USER_REGEX.test(user)
+        // const v2 = PWD_REGEX.test(pwd)
+        // if (!v1 || !v2) {
+        //     setErrMsg('Invalid Entry')
+        //     return;
+        // }
+        // try {
+        //     const response = await axios.post(REGISTER_URL,
+        //         JSON.stringify({ user, pwd }),
+        //         {
+        //             headers: { 'Content-Type': 'application/json' },
+        //             withCredentials: true
+        //         }
+        //     );
+        //     console.log(response.data)
+        //     console.log(response.accessToken)
+        //     console.log(JSON.stringify(response))
+        //     setSucces(true)
+        // }
+        // catch (err) {
+        //     if (!err?.response) {
+        //         setErrMsg('No Server Response')
+        //     } else if (err.response?.status === 409) {
+        //         setErrMsg('Username Taken')
+        //     } else {
+        //         setErrMsg('Registration Failed')
+        //     }
+        //     if (errRef.current)
+        //         errRef.current.focus();
+        // }
+    }
+
     return (
         <div className={styles.mainContainer} >
             <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
@@ -139,7 +176,7 @@ function Register() {
                     <span aria-label='dollar-sign'>$</span> <span aria-label='percent'>%</span>
                 </p>
                 <label htmlFor='confirm_pwd'>
-                    Confirm Password
+                    Confirm Password:
                     <span className={validMatch && matchPwd ? `${styles.valid}` : `${styles.hide}`}>
                         <BsIcons.BsCheck />
                     </span>
