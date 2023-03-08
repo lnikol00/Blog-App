@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import axios from '../../data/api/axios'
+import axios from '../../data/api/axios'
+import { AxiosError } from 'axios'
 import AuthContext from '../../data/context/AuthProvider'
 import { ContextType } from '../../data/context/AuthProvider'
-
-// const LOGIN_URL = "/auth"
-
 import styles from "./login.module.css"
+
+const LOGIN_URL = "/auth"
 
 function Login() {
     const { setAuth } = useContext(AuthContext) as ContextType
@@ -17,7 +17,7 @@ function Login() {
     const [user, setUser] = useState('')
     const [pwd, setPwd] = useState('')
     const [errMsg, setErrMsg] = useState('')
-    // const [success, setSucces] = useState<boolean>(false)
+    const [success, setSucces] = useState<boolean>(false)
 
     useEffect(() => {
         if (userRef.current) {
@@ -39,33 +39,34 @@ function Login() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // try {
-        //     const response = await axios.post(LOGIN_URL,
-        //         JSON.stringify({ user, pwd }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     )
-        //     console.log(JSON.stringify(response?.data))
-        //     const accessToken = response?.data?.accessToken;
-        //     setAuth({ user, pwd, accessToken })
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg("No server Response")
-        //     }
-        //     else if (err.response?.status === 400) {
-        //         setErrMsg("Missing username or password")
-        //     }
-        //     else if (err.response?.status === 401) {
-        //         setErrMsg("Unauthorized")
-        //     }
-        //     else {
-        //         setErrMsg("Login Failed")
-        //     }
-        //     if (errRef.current)
-        //         errRef.current.focus();
-        // }
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            )
+            console.log(JSON.stringify(response?.data))
+            const accessToken = response?.data?.accessToken;
+            setAuth({ user, pwd, accessToken })
+        } catch (error) {
+            const err = error as AxiosError
+            if (!err?.response) {
+                setErrMsg("No server Response")
+            }
+            else if (err.response?.status === 400) {
+                setErrMsg("Missing username or password")
+            }
+            else if (err.response?.status === 401) {
+                setErrMsg("Unauthorized")
+            }
+            else {
+                setErrMsg("Login Failed")
+            }
+            if (errRef.current)
+                errRef.current.focus();
+        }
     }
 
     const changeLogin = () => {

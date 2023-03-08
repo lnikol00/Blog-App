@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from '../../data/api/axios';
+import { AxiosError } from 'axios';
 import * as AiIcons from "react-icons/ai"
 import * as BsIcons from "react-icons/bs"
 import * as IoIcons from "react-icons/io"
@@ -79,37 +80,38 @@ function Register() {
 
     const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        //if something fails with button disable
-        // const v1 = USER_REGEX.test(user)
-        // const v2 = PWD_REGEX.test(pwd)
-        // if (!v1 || !v2) {
-        //     setErrMsg('Invalid Entry')
-        //     return;
-        // }
-        // try {
-        //     const response = await axios.post(REGISTER_URL,
-        //         JSON.stringify({ user, pwd }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     );
-        //     console.log(response.data)
-        //     console.log(response.accessToken)
-        //     console.log(JSON.stringify(response))
-        //     setSucces(true)
-        // }
-        // catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response')
-        //     } else if (err.response?.status === 409) {
-        //         setErrMsg('Username Taken')
-        //     } else {
-        //         setErrMsg('Registration Failed')
-        //     }
-        //     if (errRef.current)
-        //         errRef.current.focus();
-        // }
+        // if something fails with button disable
+        const v1 = USER_REGEX.test(user)
+        const v2 = PWD_REGEX.test(pwd)
+        if (!v1 || !v2) {
+            setErrMsg('Invalid Entry')
+            return;
+        }
+        try {
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(response.data)
+            // console.log(response.accessToken)
+            console.log(JSON.stringify(response))
+            // setSucces(true)
+        }
+        catch (error) {
+            const err = error as AxiosError
+            if (!err?.response) {
+                setErrMsg('No Server Response')
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken')
+            } else {
+                setErrMsg('Registration Failed')
+            }
+            if (errRef.current)
+                errRef.current.focus();
+        }
     }
 
     return (
