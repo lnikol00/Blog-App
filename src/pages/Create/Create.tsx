@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from "./create.module.css"
 
 function Create() {
 
     const form = useRef<HTMLFormElement>(null);
+    const titleRef = useRef<HTMLInputElement>(null)
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-    const [author, setAuthor] = useState("Luka")
-    const [disabled, setDisabled] = useState(true)
+    const [title, setTitle] = useState<string>("")
+    const [body, setBody] = useState<string>("")
+    const [author, setAuthor] = useState<string>("Luka")
+    const [disabled, setDisabled] = useState<boolean>(true)
 
     const handletitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === "") {
@@ -46,8 +47,12 @@ function Create() {
             console.log("new blog added");
         })
         navigate("/")
-        // form.current.reset();
     }
+
+    useEffect(() => {
+        if (titleRef.current)
+            titleRef.current.focus()
+    }, [])
 
     return (
         <div className={styles.mainContainer}>
@@ -56,7 +61,7 @@ function Create() {
                 <label>
                     Blog title:
                 </label>
-                <input type="text" required value={title} onChange={handletitle} />
+                <input type="text" required value={title} onChange={handletitle} ref={titleRef} />
                 <label>
                     Blog body:
                 </label>
