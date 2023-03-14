@@ -51,3 +51,33 @@
 .mainContainer button:disabled {
     cursor: not-allowed;
 }
+
+@media screen and (max-width:768px) {
+
+    .mainContainer input,
+    .mainContainer select {
+        width: 400px;
+    }
+
+    .mainContainer textarea {
+        width: 400px;
+    }
+}
+
+
+
+@media screen and (max-width:600px) {
+
+    .mainContainer {
+        margin: 45px;
+    }
+
+    .mainContainer input,
+    .mainContainer select {
+        width: 300px;
+    }
+
+    .mainContainer textarea {
+        width: 300px;
+    }
+}

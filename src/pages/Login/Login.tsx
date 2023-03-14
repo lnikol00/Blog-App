@@ -50,6 +50,7 @@ function Login() {
             console.log(JSON.stringify(response?.data))
             const accessToken = response?.data?.accessToken;
             setAuth({ user, pwd, accessToken })
+            setSucces(true)
         } catch (error) {
             const err = error as AxiosError
             if (!err?.response) {
@@ -74,43 +75,53 @@ function Login() {
     }
 
     return (
-        <div className={styles.mainContainer}>
-            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
-                {errMsg}
-            </p>
-            <h1>Sign in</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='username'>
-                    Username:
-                </label>
-                <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={handleUser}
-                    value={user}
-                    required
-                />
-                <label>
-                    Password:
-                </label>
-                <input
-                    type="password"
-                    id="paswword"
-                    onChange={handlePassword}
-                    value={pwd}
-                    required
-                />
-                <button>Sign in</button>
-            </form>
-            <p>
-                Need an Account?<br />
-                <span>
-                    <a href='' onClick={changeLogin}>Sign Up</a>
-                </span>
-            </p>
-        </div>
+        <>
+            {success ? (
+                <div>
+                    Success!
+                    Welcome {user} !
+                </div>
+            ) : (
+
+                <div className={styles.mainContainer}>
+                    <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                        {errMsg}
+                    </p>
+                    <h1>Sign in</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor='username'>
+                            Username:
+                        </label>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={handleUser}
+                            value={user}
+                            required
+                        />
+                        <label>
+                            Password:
+                        </label>
+                        <input
+                            type="password"
+                            id="paswword"
+                            onChange={handlePassword}
+                            value={pwd}
+                            required
+                        />
+                        <button>Sign in</button>
+                    </form>
+                    <p>
+                        Need an Account?<br />
+                        <span>
+                            <a href='' onClick={changeLogin}>Sign Up</a>
+                        </span>
+                    </p>
+                </div>
+            )}
+        </>
     )
 }
 

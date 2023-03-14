@@ -18,7 +18,7 @@ function BlogList(props: BlogProps) {
     const blogs = props.blogs
     const title = props.title
     return (
-        <div>
+        <div className={styles.blogContainer}>
             <h2>{title}</h2>
             <h2></h2>
             {blogs.map((blog) => {

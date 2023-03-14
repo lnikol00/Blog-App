@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import styles from "./header.module.css"
 import { HeaderData } from './HeaderData'
-import * as FaIcons from "react-icons/fa"
+import * as AiIcons from "react-icons/ai"
 
 
 export interface HeaderProps {
@@ -21,7 +21,7 @@ function Header() {
         <div className={styles.headerContainer}>
             <h1>The Daily Bugle</h1>
             <div className={styles.menuItem} onClick={handleChange}>
-                <i className={open ? "fa fa-times" : "fa fa-bars"}></i>
+                <i className={open ? "fa fa-times" : "fa fa-bars"} ></i>
             </div>
             <div className={open ? `${styles.menuBar} ${styles.menuBarActive}` : `${styles.menuBar}`} onClick={handleChange}>
                 {HeaderData.map((item, index) => {
