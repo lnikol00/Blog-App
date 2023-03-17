@@ -30,7 +30,6 @@ function Register() {
     const [matchFocus, setMatchFocus] = useState<boolean>(false);
 
     const [errMsg, setErrMsg] = useState('')
-    const [success, setSucces] = useState<boolean>(false)
 
     const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser(event.target.value)
@@ -93,7 +92,7 @@ function Register() {
             );
             console.log(response.data)
             console.log(JSON.stringify(response))
-            setSucces(true)
+            navigate("/login")
         }
         catch (error) {
             const err = error as AxiosError
@@ -110,106 +109,103 @@ function Register() {
     }
 
     return (
-        <>
-            {success ? (<div className={styles.mainContainer}>You are now logged in!</div>)
-                : (
-                    <div className={styles.mainContainer} >
-                        <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
-                            {errMsg}
-                        </p>
-                        <h1>Register</h1>
-                        <form onSubmit={handleSubmit}>
-                            <label htmlFor='username'>
-                                Username:
-                                <span className={validName ? `${styles.valid}` : `${styles.hide}`}>
-                                    <BsIcons.BsCheck />
-                                </span>
-                                <span className={validName || !user ? `${styles.hide}` : `${styles.invalid}`}>
-                                    <IoIcons.IoIosClose />
-                                </span>
-                            </label>
-                            <input
-                                type="text"
-                                id="username"
-                                ref={userRef}
-                                autoComplete="off"
-                                value={user}
-                                onChange={handleUser}
-                                aria-invalid={validName ? "false" : "true"}
-                                aria-describedby="uidnote"
-                                onFocus={() => setUserFocus(true)}
-                                onBlur={() => setUserFocus(false)}
-                                required
-                            />
-                            <p id="uidnote" className={userFocus && user && !validName ? `${styles.instructions}` : `${styles.offscreen}`}>
-                                <AiIcons.AiOutlineInfoCircle />
-                                4 to 24 characters<br />
-                                Must begin with a letter <br />
-                                Letter, numbers, underscores, hypens allowed
-                            </p>
-                            <label htmlFor='password'>
-                                Password:
-                                <span className={validPwd ? `${styles.valid}` : `${styles.hide}`}>
-                                    <BsIcons.BsCheck />
-                                </span>
-                                <span className={validPwd || !pwd ? `${styles.hide}` : `${styles.invalid}`}>
-                                    <IoIcons.IoIosClose />
-                                </span>
-                            </label>
-                            <input
-                                type="password"
-                                id="paswword"
-                                onChange={handlePassword}
-                                required
-                                aria-invalid={validPwd ? "false" : "true"}
-                                aria-describedby="pwdnote"
-                                onFocus={() => setPwdFocus(true)}
-                                onBlur={() => setPwdFocus(false)}
-                            />
-                            <p id="pwdnote" className={pwdFocus && pwd && !validPwd ? `${styles.instructions}` : `${styles.offscreen}`}>
-                                <AiIcons.AiOutlineInfoCircle />
-                                8 to 24 characters<br />
-                                Must include upercase and lovercase letters,
-                                a number and a special character.<br />
-                                Allowed special characters: <span aria-label='exclamation mark'>!</span>
-                                <span aria-label='at symbol'>@</span> <span aria-label='hashtag'>#</span>
-                                <span aria-label='dollar-sign'>$</span> <span aria-label='percent'>%</span>
-                            </p>
-                            <label htmlFor='confirm_pwd'>
-                                Confirm Password:
-                                <span className={validMatch && matchPwd ? `${styles.valid}` : `${styles.hide}`}>
-                                    <BsIcons.BsCheck />
-                                </span>
-                                <span className={validMatch || !matchPwd ? `${styles.hide}` : `${styles.invalid}`}>
-                                    <IoIcons.IoIosClose />
-                                </span>
-                            </label>
-                            <input
-                                type="password"
-                                id="confirm_pwd"
-                                onChange={handleMatchPassword}
-                                required
-                                aria-invalid={validMatch ? "false" : "true"}
-                                aria-describedby="confirmnote"
-                                onFocus={() => setMatchFocus(true)}
-                                onBlur={() => setMatchFocus(false)}
-                            />
-                            <p id="confirmnote" className={matchFocus && matchPwd && !validMatch ? `${styles.instructions}` : `${styles.offscreen}`}>
-                                <AiIcons.AiOutlineInfoCircle />
-                                Must match  the first password input field!
-                            </p>
-                            <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign up</button>
-                        </form>
-                        <p>
-                            Already registered?<br />
-                            <span>
-                                <a href='' onClick={changeRegister}>Sign In</a>
-                            </span>
-                        </p>
-                    </div >
-                )}
-        </>
+        <div className={styles.mainContainer} >
+            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                {errMsg}
+            </p>
+            <h1>Register</h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor='username'>
+                    Username:
+                    <span className={validName ? `${styles.valid}` : `${styles.hide}`}>
+                        <BsIcons.BsCheck />
+                    </span>
+                    <span className={validName || !user ? `${styles.hide}` : `${styles.invalid}`}>
+                        <IoIcons.IoIosClose />
+                    </span>
+                </label>
+                <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    value={user}
+                    onChange={handleUser}
+                    aria-invalid={validName ? "false" : "true"}
+                    aria-describedby="uidnote"
+                    onFocus={() => setUserFocus(true)}
+                    onBlur={() => setUserFocus(false)}
+                    required
+                />
+                <p id="uidnote" className={userFocus && user && !validName ? `${styles.instructions}` : `${styles.offscreen}`}>
+                    <AiIcons.AiOutlineInfoCircle />
+                    4 to 24 characters<br />
+                    Must begin with a letter <br />
+                    Letter, numbers, underscores, hypens allowed
+                </p>
+                <label htmlFor='password'>
+                    Password:
+                    <span className={validPwd ? `${styles.valid}` : `${styles.hide}`}>
+                        <BsIcons.BsCheck />
+                    </span>
+                    <span className={validPwd || !pwd ? `${styles.hide}` : `${styles.invalid}`}>
+                        <IoIcons.IoIosClose />
+                    </span>
+                </label>
+                <input
+                    type="password"
+                    id="paswword"
+                    onChange={handlePassword}
+                    required
+                    aria-invalid={validPwd ? "false" : "true"}
+                    aria-describedby="pwdnote"
+                    onFocus={() => setPwdFocus(true)}
+                    onBlur={() => setPwdFocus(false)}
+                />
+                <p id="pwdnote" className={pwdFocus && pwd && !validPwd ? `${styles.instructions}` : `${styles.offscreen}`}>
+                    <AiIcons.AiOutlineInfoCircle />
+                    8 to 24 characters<br />
+                    Must include upercase and lovercase letters,
+                    a number and a special character.<br />
+                    Allowed special characters: <span aria-label='exclamation mark'>!</span>
+                    <span aria-label='at symbol'>@</span> <span aria-label='hashtag'>#</span>
+                    <span aria-label='dollar-sign'>$</span> <span aria-label='percent'>%</span>
+                </p>
+                <label htmlFor='confirm_pwd'>
+                    Confirm Password:
+                    <span className={validMatch && matchPwd ? `${styles.valid}` : `${styles.hide}`}>
+                        <BsIcons.BsCheck />
+                    </span>
+                    <span className={validMatch || !matchPwd ? `${styles.hide}` : `${styles.invalid}`}>
+                        <IoIcons.IoIosClose />
+                    </span>
+                </label>
+                <input
+                    type="password"
+                    id="confirm_pwd"
+                    onChange={handleMatchPassword}
+                    required
+                    aria-invalid={validMatch ? "false" : "true"}
+                    aria-describedby="confirmnote"
+                    onFocus={() => setMatchFocus(true)}
+                    onBlur={() => setMatchFocus(false)}
+                />
+                <p id="confirmnote" className={matchFocus && matchPwd && !validMatch ? `${styles.instructions}` : `${styles.offscreen}`}>
+                    <AiIcons.AiOutlineInfoCircle />
+                    Must match  the first password input field!
+                </p>
+                <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign up</button>
+            </form>
+            <p>
+                Already registered?<br />
+                <span>
+                    <a href='' onClick={changeRegister}>Sign In</a>
+                </span>
+            </p>
+        </div >
     )
 }
+
+
 
 export default Register
