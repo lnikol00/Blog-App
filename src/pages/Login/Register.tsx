@@ -31,18 +31,6 @@ function Register() {
 
     const [errMsg, setErrMsg] = useState('')
 
-    const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUser(event.target.value)
-    }
-
-    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPwd(event.target.value)
-    }
-
-    const handleMatchPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMatchPwd(event.target.value)
-    }
-
     const changeRegister = () => {
         navigate("/login")
     }
@@ -130,7 +118,7 @@ function Register() {
                     ref={userRef}
                     autoComplete="off"
                     value={user}
-                    onChange={handleUser}
+                    onChange={(e) => setUser(e.target.value)}
                     aria-invalid={validName ? "false" : "true"}
                     aria-describedby="uidnote"
                     onFocus={() => setUserFocus(true)}
@@ -155,7 +143,7 @@ function Register() {
                 <input
                     type="password"
                     id="paswword"
-                    onChange={handlePassword}
+                    onChange={(e) => setPwd(e.target.value)}
                     required
                     aria-invalid={validPwd ? "false" : "true"}
                     aria-describedby="pwdnote"
@@ -183,7 +171,7 @@ function Register() {
                 <input
                     type="password"
                     id="confirm_pwd"
-                    onChange={handleMatchPassword}
+                    onChange={(e) => setMatchPwd(e.target.value)}
                     required
                     aria-invalid={validMatch ? "false" : "true"}
                     aria-describedby="confirmnote"

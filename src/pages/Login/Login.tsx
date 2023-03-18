@@ -29,14 +29,6 @@ function Login() {
         setErrMsg('');
     }, [user, pwd])
 
-    const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUser(event.target.value)
-    }
-
-    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPwd(event.target.value)
-    }
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -97,7 +89,7 @@ function Login() {
                             id="username"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={handleUser}
+                            onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
                         />
@@ -107,7 +99,7 @@ function Login() {
                         <input
                             type="password"
                             id="paswword"
-                            onChange={handlePassword}
+                            onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
                         />
