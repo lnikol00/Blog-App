@@ -5,6 +5,8 @@ https://github.com/gitdagray/mongo_async_crud.git
 
 In order to start the server type npm run dev in terminal
 
+For ACCES_TOKEN_SECRET and REFRESH_TOKEN_SECRET use require('crypto').randomBytes(64).toString('hex') command in node.
+
 ## Fetching data with useFetch
 In order to fetch data from db.json run this command in terminal
 
