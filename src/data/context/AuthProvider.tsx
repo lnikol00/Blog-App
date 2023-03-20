@@ -5,7 +5,10 @@ interface AuthType {
 }
 
 export type ContextType = {
-    auth: {}
+    auth: {
+        user?: string
+        accessToken?: string | number
+    }
     setAuth: React.Dispatch<React.SetStateAction<{}>>
 }
 
@@ -15,7 +18,7 @@ export const AuthProvider = ({ children }: AuthType) => {
     const [auth, setAuth] = useState({})
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth }}>
+        <AuthContext.Provider value={{ auth, setAuth, }}>
             {children}
         </AuthContext.Provider>
     )

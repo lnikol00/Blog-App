@@ -1,23 +1,23 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from '../../data/api/axios'
 import { AxiosError } from 'axios'
-import AuthContext from '../../data/context/AuthProvider'
-import { ContextType } from '../../data/context/AuthProvider'
 import styles from "./login.module.css"
+import useAuth from '../../components/hooks/useAuth'
 
 const LOGIN_URL = "/auth"
 
 function Login() {
-    const { setAuth } = useContext(AuthContext) as ContextType
+    const { setAuth } = useAuth();
     const userRef = useRef<null | HTMLInputElement>(null)
     const errRef = useRef<null | HTMLParagraphElement>(null)
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
 
     const [user, setUser] = useState('')
     const [pwd, setPwd] = useState('')
     const [errMsg, setErrMsg] = useState('')
-    const [success, setSucces] = useState<boolean>(false)
 
     useEffect(() => {
         if (userRef.current) {
@@ -42,7 +42,7 @@ function Login() {
             console.log(JSON.stringify(response?.data))
             const accessToken = response?.data?.accessToken;
             setAuth({ user, pwd, accessToken })
-            setSucces(true)
+            navigate(from, { replace: true })
         } catch (error) {
             const err = error as AxiosError
             if (!err?.response) {
@@ -67,53 +67,44 @@ function Login() {
     }
 
     return (
-        <>
-            {success ? (
-                <div>
-                    Success!
-                    Welcome {user} !
-                </div>
-            ) : (
 
-                <div className={styles.mainContainer}>
-                    <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
-                        {errMsg}
-                    </p>
-                    <h1>Sign in</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor='username'>
-                            Username:
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                        />
-                        <label>
-                            Password:
-                        </label>
-                        <input
-                            type="password"
-                            id="paswword"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <button>Sign in</button>
-                    </form>
-                    <p>
-                        Need an Account?<br />
-                        <span>
-                            <a href='' onClick={changeLogin}>Sign Up</a>
-                        </span>
-                    </p>
-                </div>
-            )}
-        </>
+        <div className={styles.mainContainer}>
+            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                {errMsg}
+            </p>
+            <h1>Sign in</h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor='username'>
+                    Username:
+                </label>
+                <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => setUser(e.target.value)}
+                    value={user}
+                    required
+                />
+                <label>
+                    Password:
+                </label>
+                <input
+                    type="password"
+                    id="paswword"
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                    required
+                />
+                <button>Sign in</button>
+            </form>
+            <p>
+                Need an Account?<br />
+                <span>
+                    <a href='' onClick={changeLogin}>Sign Up</a>
+                </span>
+            </p>
+        </div>
     )
 }
 

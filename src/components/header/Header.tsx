@@ -1,20 +1,22 @@
 import React from 'react'
 import { useState } from 'react'
 import styles from "./header.module.css"
-import { HeaderData } from './HeaderData'
-import * as AiIcons from "react-icons/ai"
-
-
-export interface HeaderProps {
-    open: boolean
-    handleChange: () => void
-}
+import useLogout from '../hooks/useLogout'
+import useAuth from '../hooks/useAuth'
+import { Link } from 'react-router-dom'
 
 function Header() {
     const [open, setOpen] = useState<boolean>(false)
+    const logout = useLogout();
 
     const handleChange = () => {
         setOpen(!open)
+    }
+
+    const { auth } = useAuth();
+
+    const signOut = async () => {
+        await logout();
     }
 
     return (
@@ -24,17 +26,15 @@ function Header() {
                 <i className={open ? "fa fa-times" : "fa fa-bars"} ></i>
             </div>
             <div className={open ? `${styles.menuBar} ${styles.menuBarActive}` : `${styles.menuBar}`} onClick={handleChange}>
-                {HeaderData.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <a href={item.url} className={styles.menuLinks} >
-                                {item.name}
-                            </a>
-                        </li>
-                    )
-                })}
                 <li>
-                    <a href='login' className={styles.menuLinks}>Log in</a>
+                    <Link to='/' className={styles.menuLinks}>Home</Link>
+                </li>
+                <li>
+                    <Link to='/create' className={styles.menuLinks}>New Blog</Link>
+                </li>
+                <li>
+                    {auth?.user ? <Link to="" className={styles.menuLogout} onClick={signOut}>Logout</Link> :
+                        <Link to='login' className={styles.menuLogin}>Log in</Link>}
                 </li>
             </div>
         </div>

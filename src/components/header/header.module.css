@@ -33,9 +33,27 @@
     padding: 0.5rem;
 }
 
+.menuLogin {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menuLogout {
+    color: red;
+    text-decoration: none;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .menuLinks:hover {
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 .menuLinks span {

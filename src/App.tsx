@@ -1,32 +1,33 @@
 import './App.css';
 
-import Header from './components/header/Header';
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Create from './pages/Create/Create';
 import BlogDetails from './pages/home/BlogDetails';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
+import Layout from './components/hooks/Layout';
+import RequireAuth from './data/context/RequireAuth';
+import PersistLogin from './data/context/PersistLogin';
 
 function App() {
   return (
-    < div className="App" >
-      <Router>
-        <Header />
-        <div className='main-container'>
-          <Routes>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth />}>
             <Route index element={<Home />} />
             <Route path='create' element={<Create />} />
             <Route path='blogs/:id' element={<BlogDetails />} />
-            <Route path='login' element={<Login />} />
-            <Route path='register' element={<Register />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
-    </div >
+          </Route>
+        </Route>
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
+      </Route>
+    </Routes>
+
   );
 }
 

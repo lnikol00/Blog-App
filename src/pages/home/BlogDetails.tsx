@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import useFetch from '../../components/useFetch/useFetch';
+import useFetch from '../../components/hooks/useFetch';
 import styles from "./home.module.css"
 
 interface ToDoItems {

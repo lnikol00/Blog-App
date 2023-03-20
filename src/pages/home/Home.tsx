@@ -1,6 +1,7 @@
 import styles from "./home.module.css"
 import BlogList from './BlogList'
-import useFetch from '../../components/useFetch/useFetch'
+import useFetch from '../../components/hooks/useFetch'
+import useAuth from "../../components/hooks/useAuth"
 
 interface ToDoItems {
     id: number,
@@ -11,14 +12,18 @@ interface ToDoItems {
 
 function Home() {
     const [data, isPending, error] = useFetch<ToDoItems[]>('http://localhost:8000/blogs', []);
+    const { auth } = useAuth();
     // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
     return (
         <div className={styles.mainContainer}>
+            <h2>Welcome {auth?.user}</h2>
+            <span>Your blogs are:</span>
             {isPending && <div className={styles.loading}>Loading...</div>}
-            {data && <BlogList blogs={data} title="All Blogs!" />}
+            {data && <BlogList blogs={data} />}
             {error && <div className={styles.error}>{error}</div>}
         </div>
     )
 }
 
 export default Home
+

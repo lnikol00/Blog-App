@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styles from "./home.module.css"
 
 interface BlogProps {
-    title: string
     blogs: ToDoItems[],
 }
 
@@ -16,10 +15,8 @@ interface ToDoItems {
 
 function BlogList(props: BlogProps) {
     const blogs = props.blogs
-    const title = props.title
     return (
         <div className={styles.blogContainer}>
-            <h2>{title}</h2>
             <h2></h2>
             {blogs.map((blog) => {
                 return (
