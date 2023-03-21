@@ -10,8 +10,12 @@
     top: 0;
 }
 
-.headerContainer h1 {
+.heading {
     font-size: 28px;
+    text-decoration: none;
+    color: black;
+    list-style: none;
+    font-weight: 900;
 }
 
 .menuBar {

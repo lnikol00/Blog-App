@@ -47,6 +47,31 @@
     font-size: 18px;
 }
 
+.article h2 {
+    font-size: 2rem;
+    padding: 0.5rem 0;
+}
+
+.article span {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+}
+
+.article p {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+}
+
+.article button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    background-color: #f1356d;
+    outline: none;
+    margin: 0.5rem 0;
+}
+
 @media screen and (max-width:600px) {
     .mainContainer {
         margin: 0px auto;

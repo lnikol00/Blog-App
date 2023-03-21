@@ -21,7 +21,9 @@ function Header() {
 
     return (
         <div className={styles.headerContainer}>
-            <h1>The Daily Bugle</h1>
+            <Link to='/' className={styles.heading}>
+                The Daily Bugle
+            </Link>
             <div className={styles.menuItem} onClick={handleChange}>
                 <i className={open ? "fa fa-times" : "fa fa-bars"} ></i>
             </div>
