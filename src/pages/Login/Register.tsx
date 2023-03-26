@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../data/api/axios';
 import { AxiosError } from 'axios';
 import * as AiIcons from "react-icons/ai"
@@ -30,10 +30,6 @@ function Register() {
     const [matchFocus, setMatchFocus] = useState<boolean>(false);
 
     const [errMsg, setErrMsg] = useState('')
-
-    const changeRegister = () => {
-        navigate("/login")
-    }
 
     useEffect(() => {
         if (userRef.current) {
@@ -187,7 +183,7 @@ function Register() {
             <p>
                 Already registered?<br />
                 <span>
-                    <a href='' onClick={changeRegister}>Sign In</a>
+                    <Link to="/login" >Sign In</Link>
                 </span>
             </p>
         </div >

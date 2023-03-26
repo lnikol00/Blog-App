@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from '../../data/api/axios'
 import { AxiosError } from 'axios'
 import styles from "./login.module.css"
@@ -70,9 +70,7 @@ function Login() {
         localStorage.setItem("persist", persist);
     }, [persist])
 
-    const changeLogin = () => {
-        navigate("/register")
-    }
+
 
     return (
 
@@ -118,7 +116,7 @@ function Login() {
             <p>
                 Need an Account?<br />
                 <span>
-                    <a href='' onClick={changeLogin}>Sign Up</a>
+                    <Link to='/register'>Sign Up</Link>
                 </span>
             </p>
         </div>
