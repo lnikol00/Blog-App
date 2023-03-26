@@ -44,7 +44,7 @@ function Home() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.heading}>
-                <h2 >Welcome {auth?.user}</h2>
+                <h2 >Welcome to your Blog Page</h2>
                 <label>
                     <input onChange={e => setSearch(e.target.value)} />
                     <BsIcons.BsSearch />

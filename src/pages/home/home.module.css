@@ -184,6 +184,10 @@ label input {
         gap: 10px;
     }
 
+    .heading label {
+        margin: 0;
+    }
+
     .headingContainer {
         justify-content: center;
         gap: 10px;

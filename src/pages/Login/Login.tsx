@@ -8,7 +8,7 @@ import useAuth from '../../components/hooks/useAuth'
 const LOGIN_URL = "/auth"
 
 function Login() {
-    const { setAuth } = useAuth();
+    const { setAuth, persist, setPersist } = useAuth();
     const userRef = useRef<null | HTMLInputElement>(null)
     const errRef = useRef<null | HTMLParagraphElement>(null)
     const navigate = useNavigate()
@@ -62,6 +62,14 @@ function Login() {
         }
     }
 
+    const togglePersist = () => {
+        setPersist((prev: any) => !prev);
+    }
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist);
+    }, [persist])
+
     const changeLogin = () => {
         navigate("/register")
     }
@@ -73,7 +81,7 @@ function Login() {
                 {errMsg}
             </p>
             <h1>Sign in</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <label htmlFor='username'>
                     Username:
                 </label>
@@ -97,6 +105,15 @@ function Login() {
                     required
                 />
                 <button>Sign in</button>
+                <div className={styles.persistCheck}>
+                    <input
+                        type="checkbox"
+                        id="persist"
+                        onChange={togglePersist}
+                        checked={persist}
+                    />
+                    <label htmlFor='persist'>Trust This Device</label>
+                </div>
             </form>
             <p>
                 Need an Account?<br />
