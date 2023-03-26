@@ -13,6 +13,7 @@
 .heading {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .heading label {
@@ -83,15 +84,87 @@ label input {
     line-height: 2rem;
 }
 
+.article textarea {
+    margin-top: 10px;
+    padding: 15px;
+    width: 75rem;
+    height: 50rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
+.article input {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.article select {
+    padding: 10px;
+}
+
 .article button {
     padding: 10px 16px;
     border-radius: 8px;
     border: none;
     color: white;
-    background-color: #f1356d;
+    background-color: rgb(26, 142, 26);
     outline: none;
     margin: 0.5rem 0;
     cursor: pointer;
+}
+
+.headingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.headingContainer .dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    border-radius: 50%;
+    background-color: lightgray;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    right: 10em;
+    background-color: white;
+    border: 1px solid black;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dropdown li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    width: 180px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.dropdown .edit:hover {
+    background-color: rgb(26, 142, 26);
+    color: white;
+}
+
+.dropdown .delete:hover {
+    background-color: #f1356d;
+    color: white;
 }
 
 @media screen and (max-width:600px) {
@@ -104,5 +177,28 @@ label input {
     .blogPreview {
         justify-content: center;
         align-items: center;
+    }
+
+    .heading {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .headingContainer {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .article p {
+        padding: 0.5rem;
+    }
+
+    .dropdown {
+        right: 5em;
+    }
+
+    .article textarea {
+        padding: 0.5rem;
+        width: 350px;
     }
 }

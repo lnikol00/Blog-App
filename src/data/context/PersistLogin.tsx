@@ -20,8 +20,8 @@ function PersistLogin() {
                 setIsLoading(false)
             }
         }
-
         !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false)
+
     }, [])
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function PersistLogin() {
     return (
         <>
             {isLoading ?
-                <p>Loading...</p> :
+                <p style={{ margin: '2rem 10rem' }}>Loading...</p> :
                 <Outlet />}
         </>
     )

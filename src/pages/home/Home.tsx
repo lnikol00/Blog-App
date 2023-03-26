@@ -20,6 +20,7 @@ function Home() {
     const [isPending, setIsPending] = useState<boolean>(true)
     const [blogs, setBlogs] = useState<BlogsType>([])
     // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
+
     useEffect(() => {
         fetch("http://localhost:8000/blogs")
             .then((response) => {
@@ -43,7 +44,7 @@ function Home() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.heading}>
-                <h2>Welcome {auth?.user}</h2>
+                <h2 >Welcome {auth?.user}</h2>
                 <label>
                     <input onChange={e => setSearch(e.target.value)} />
                     <BsIcons.BsSearch />
