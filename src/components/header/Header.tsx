@@ -35,7 +35,7 @@ function Header() {
                     <Link to='/create' className={styles.menuLinks}>New Blog</Link>
                 </li>
                 <li>
-                    {auth?.accessToken || auth?.user ? <Link to="" className={styles.menuLogout} onClick={signOut}>Logout</Link> :
+                    {auth?.accessToken ? <Link to="" className={styles.menuLogout} onClick={signOut}>Logout</Link> :
                         <Link to='login' className={styles.menuLogin}>Log in</Link>}
                 </li>
             </div>

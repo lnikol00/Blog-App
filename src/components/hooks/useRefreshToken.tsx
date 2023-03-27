@@ -13,7 +13,6 @@ function useRefreshToken() {
             console.log(response.data.accessToken);
             return {
                 ...prev,
-                user: response.data.user,
                 accessToken: response.data.accessToken
             }
         });
