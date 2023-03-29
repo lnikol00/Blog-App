@@ -10,14 +10,26 @@ function BlogDetails() {
     const navigate = useNavigate();
     const [open, setOpen] = useState<boolean>(false)
     const [edit, setEdit] = useState<boolean>(true)
-    const [blog, setBlog] = useState<BlogType>()
-    const [body, setBody] = useState<string>("")
-    const [title, setTitle] = useState<string>("")
-    const [author, setAuthor] = useState<string>("")
+    const [body, setBody] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
+    const [author, setAuthor] = useState<string>('')
 
+    const [blog, setBlog] = useState<BlogType>()
     const [error, setError] = useState<null>(null)
     const [isPending, setIsPending] = useState<boolean>(true)
     // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
+
+    useEffect(() => {
+        setTitle(`${blog?.title}`)
+    }, [blog?.title])
+
+    useEffect(() => {
+        setAuthor(`${blog?.author}`)
+    }, [blog?.author])
+
+    useEffect(() => {
+        setBody(`${blog?.body}`)
+    }, [blog?.body])
 
     useEffect(() => {
         fetch(`http://localhost:8000/blogs/${params.id}`)
