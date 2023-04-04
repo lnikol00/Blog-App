@@ -3,6 +3,7 @@ import useAuth from "../../components/hooks/useAuth"
 import { useEffect, useState } from "react"
 import * as BsIcons from "react-icons/bs"
 import { Link } from "react-router-dom"
+import useFetch from "../../components/hooks/useFetch"
 
 export type BlogType = {
     id: number,
@@ -44,7 +45,7 @@ function Home() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.heading}>
-                <h2 >Welcome to Daily Bugle</h2>
+                {auth?.user ? <h2 >Welcome back {auth?.user}!</h2> : <h2>My Home Page</h2>}
                 <label>
                     <input onChange={e => setSearch(e.target.value)} />
                     <BsIcons.BsSearch />

@@ -48,10 +48,6 @@
     font-size: 16px;
 }
 
-.mainContainer button:disabled {
-    cursor: not-allowed;
-}
-
 @media screen and (max-width:768px) {
 
     .mainContainer input,
