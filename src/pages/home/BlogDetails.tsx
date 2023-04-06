@@ -21,15 +21,9 @@ function BlogDetails() {
 
     useEffect(() => {
         setTitle(`${blog?.title}`)
-    }, [blog?.title])
-
-    useEffect(() => {
         setAuthor(`${blog?.author}`)
-    }, [blog?.author])
-
-    useEffect(() => {
         setBody(`${blog?.body}`)
-    }, [blog?.body])
+    }, [blog?.title, blog?.author, blog?.body])
 
     useEffect(() => {
         fetch(`http://localhost:8000/blogs/${params.id}`)
