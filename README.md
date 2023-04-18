@@ -12,4 +12,4 @@ For ACCES_TOKEN_SECRET and REFRESH_TOKEN_SECRET use require('crypto').randomByte
 ## Fetching data with useFetch
 In order to fetch data from db.json run this command in terminal
 
-npx json-server --watch/src/data/db.json --port 8000
+npx json-server --watch src/data/db.json --port 8000
