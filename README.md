@@ -5,7 +5,7 @@ https://github.com/gitdagray/mongo_async_crud.git
 
 In order to start the server type, you can run
 
-###npm run dev
+###`npm run dev`
 
 In order to connect server to MongoDB you will need to add .env file and add ACCES_TOKEN_SECRET, REFRESH_TOKEN_SECRET and DATABASE_URI.
 For DATABASE_URI you need to pass the connection from MongoDB.
