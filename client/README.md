@@ -1,5 +1,5 @@
 ## Starting backend server
-In order for login and register to work you will need to run backend server
+In order for login and register to work you will need to run backend serves
 
 ### `npm run dev`
 
