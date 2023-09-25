@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from "./create.module.css"
+import axios from 'axios';
 
 function Create() {
 
@@ -35,16 +36,20 @@ function Create() {
         setAuthor(event.target.value)
     }
 
-    const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const blog = { title, body, author }
-
-        fetch('http://localhost:8000/blogs', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(blog)
-        }).then(() => {
-            console.log("new blog added");
+        const newBlog = {
+            title: title,
+            author: author,
+            body: body,
+        }
+        axios.post('/api/blogs', JSON.stringify(newBlog), {
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }
+        ).then(() => {
+            console.log("new blog added")
         })
         navigate("/")
     }

@@ -1,23 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { BlogType } from './Home';
 import * as BsIcons from "react-icons/bs"
 import * as BiIcons from "react-icons/bi"
 import styles from "./home.module.css"
+import axios from 'axios';
 
 function BlogDetails() {
-    const params = useParams()
+    const params = useParams();
     const navigate = useNavigate();
     const [open, setOpen] = useState<boolean>(false)
     const [edit, setEdit] = useState<boolean>(true)
     const [body, setBody] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [author, setAuthor] = useState<string>('')
-
     const [blog, setBlog] = useState<BlogType>()
-    const [error, setError] = useState<null>(null)
-    const [isPending, setIsPending] = useState<boolean>(true)
-    // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
 
     useEffect(() => {
         setTitle(`${blog?.title}`)
@@ -26,43 +23,35 @@ function BlogDetails() {
     }, [blog?.title, blog?.author, blog?.body])
 
     useEffect(() => {
-        fetch(`http://localhost:8000/blogs/${params.id}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error('Sorry, we could not fetch the data!')
-                }
-                return response.json()
-            })
-            .then((json) => {
-                setBlog(json)
-                setError(null)
-                setIsPending(false)
-            })
-            .catch((err) => {
-                setError(err.message)
-                setIsPending(false)
-            })
+        const fetchblogs = async () => {
+            const { data } = await axios.get(`/api/blogs/${params.id}`)
+            setBlog(data);
+        }
+        fetchblogs();
+    }, [params])
 
-    }, [])
     const handleDelete = () => {
-        fetch(`http://localhost:8000/blogs/${params.id}`, {
-            method: 'DELETE',
-        }).then(() => {
-            navigate("/");
+        axios.delete(`/api/blogs/${params.id}`
+        ).then(() => {
+            console.log("Blog deleted")
+            navigate("/")
         })
     }
 
     const handleEdit = () => {
-        const blog = { title, author, body }
-        fetch(`http://localhost:8000/blogs/${params.id}`, {
-            method: 'PUT',
+        const updateBlog = {
+            title: title,
+            author: author,
+            body: body,
+        }
+        axios.put(`/api/blogs/${params.id}`, JSON.stringify(updateBlog), {
             headers: {
-                'Accept': 'application/json',
+                "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(blog)
-        }).then(() => {
-            console.log("blog updated");
+        }
+        ).then(() => {
+            console.log("blog updated")
             window.location.reload();
         })
         setEdit(!edit)
@@ -79,8 +68,6 @@ function BlogDetails() {
 
     return (
         <div className={styles.mainContainer}>
-            {isPending && <div>Loading...</div>}
-            {error && <div>{error}</div>}
             {
                 edit ? <>
                     {blog &&

@@ -3,9 +3,10 @@ import useAuth from "../../components/hooks/useAuth"
 import { useEffect, useState } from "react"
 import * as BsIcons from "react-icons/bs"
 import { Link } from "react-router-dom"
+import axios from "../../components/api/axios"
 
 export type BlogType = {
-    id: number,
+    _id: number | string,
     title: string
     author: string
     body: string
@@ -16,28 +17,14 @@ type BlogsType = Array<BlogType>
 function Home() {
     const { auth } = useAuth();
     const [search, setSearch] = useState<string>('')
-    const [error, setError] = useState<null>(null)
-    const [isPending, setIsPending] = useState<boolean>(true)
     const [blogs, setBlogs] = useState<BlogsType>([])
-    // To fetch data from database run "npx json-server --watch src/data/db.json --port 8000" in terminal
 
     useEffect(() => {
-        fetch("http://localhost:8000/blogs")
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error('Sorry, we could not fetch the data!')
-                }
-                return response.json()
-            })
-            .then((json) => {
-                setBlogs(json)
-                setError(null)
-                setIsPending(false)
-            })
-            .catch((err) => {
-                setError(err.message)
-                setIsPending(false)
-            })
+        const fetchblogs = async () => {
+            const { data } = await axios.get("/api/blogs")
+            setBlogs(data);
+        }
+        fetchblogs();
 
     }, [])
 
@@ -55,7 +42,6 @@ function Home() {
                 </label>
             </div>
             <span>Your blogs are:</span>
-            {isPending && <div className={styles.loading}>Loading...</div>}
             {blogs &&
                 blogs.filter((blog) => {
                     if (search === "") {
@@ -70,8 +56,8 @@ function Home() {
 
                 }).map((blog) => {
                     return (
-                        <div className={styles.blogPreview} key={blog.id}>
-                            <Link to={`blogs/${blog.id}`}>
+                        <div className={styles.blogPreview} key={blog._id}>
+                            <Link to={`/blogs/${blog._id}`}>
                                 <h2>{blog.title}</h2>
                                 <p>Written by {blog.author}</p>
                             </Link>
@@ -79,7 +65,6 @@ function Home() {
                     )
                 })
             }
-            {error && <div className={styles.error}>{error}</div>}
         </div>
     )
 }

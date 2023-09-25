@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../data/api/axios';
+import axios from '../../components/api/axios';
 import { AxiosError } from 'axios';
 import * as AiIcons from "react-icons/ai"
 import * as BsIcons from "react-icons/bs"

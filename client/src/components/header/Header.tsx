@@ -7,9 +7,16 @@ import { Link } from 'react-router-dom'
 
 function Header() {
     const [open, setOpen] = useState<boolean>(false)
+    const [menu_class, setMenuClass] = useState(`${styles.menuBars} ${styles.unclicked}`)
     const logout = useLogout();
 
     const handleChange = () => {
+        if (!open) {
+            setMenuClass(`${styles.menuBars} ${styles.clicked}`)
+        }
+        else {
+            setMenuClass(`${styles.menuBars} ${styles.unclicked}`)
+        }
         setOpen(!open)
     }
 
@@ -25,7 +32,9 @@ function Header() {
                 The Daily Bugle
             </Link>
             <div className={styles.menuItem} onClick={handleChange}>
-                <i className={open ? "fa fa-times" : "fa fa-bars"} ></i>
+                <div className={menu_class}></div>
+                <div className={menu_class}></div>
+                <div className={menu_class}></div>
             </div>
             <div className={open ? `${styles.menuBar} ${styles.menuBarActive}` : `${styles.menuBar}`} onClick={handleChange}>
                 <li>

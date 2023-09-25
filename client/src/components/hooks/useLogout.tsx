@@ -1,4 +1,4 @@
-import axios from "../../data/api/axios";
+import axios from "../api/axios";
 import useAuth from "./useAuth";
 
 import React from 'react'

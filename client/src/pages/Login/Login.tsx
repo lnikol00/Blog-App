@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import axios from '../../data/api/axios'
+import axios from '../../components/api/axios'
 import { AxiosError } from 'axios'
 import styles from "./login.module.css"
 import useAuth from '../../components/hooks/useAuth'

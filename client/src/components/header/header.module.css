@@ -71,6 +71,8 @@
 @media screen and (max-width: 1400px) {
     .headerContainer {
         position: sticky;
+        justify-content: space-between;
+        padding: 0 30px;
     }
 
     .menuBar {
@@ -115,13 +117,43 @@
     }
 
     .menuItem {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 25%);
-        font-size: 30px;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border-radius: 50%;
         cursor: pointer;
-        z-index: 1;
+    }
+
+    .menuBars {
+        width: 1.4em;
+        height: 0.2em;
+        background-color: black;
+        border-radius: 0.5em;
+        float: right;
+        z-index: 999;
+    }
+
+    .clicked:nth-child(1) {
+        transform: rotate(45deg) translate(0.4em, 0.45em);
+        transition: ease-out 0.5s;
+    }
+
+    .clicked:nth-child(2) {
+        transform: scale(0.1);
+        transition: ease-out 0.5s;
+    }
+
+    .clicked:nth-child(3) {
+        transform: rotate(-45deg) translate(0.3rem, -0.35rem);
+        transition: ease-out 0.5s;
+    }
+
+    .unclicked {
+        transform: rotate(0) translate(0);
+        transition: cubic-bezier(0.275, 0.885, 0.32, 1) 0.5s;
     }
 }

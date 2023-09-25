@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
-import useAuth from '../../components/hooks/useAuth';
-import useRefreshToken from '../../components/hooks/useRefreshToken'
+import useAuth from '../hooks/useAuth';
+import useRefreshToken from '../hooks/useRefreshToken'
 
 function PersistLogin() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
