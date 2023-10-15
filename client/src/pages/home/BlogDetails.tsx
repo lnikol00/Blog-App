@@ -113,8 +113,8 @@ function BlogDetails() {
                             </select>
                             < div >
                                 <textarea defaultValue={blog.body} onChange={(e) => setBody(e.target.value)} />
-                                <button onClick={handleEdit}>Save changes</button>
                             </div >
+                            <button onClick={handleEdit}>Save changes</button>
                         </article>
                     }
                 </>

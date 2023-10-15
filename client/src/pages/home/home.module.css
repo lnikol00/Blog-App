@@ -170,6 +170,22 @@ label input {
     color: white;
 }
 
+@media screen and (max-width: 1200px) {
+
+    .article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+    .article textarea {
+        padding: 0.5rem;
+        width: 600px;
+    }
+}
+
 @media screen and (max-width:600px) {
     .mainContainer {
         margin: 0px auto;
