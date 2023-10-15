@@ -8,7 +8,9 @@ const corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    optionsSuccessStatus: 200
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    optionsSuccessStatus: 204,
+    allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 module.exports = corsOptions;
