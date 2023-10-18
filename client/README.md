@@ -1,4 +1,4 @@
-## Starting Frontend
+# Frontend - client
 
 In the project directory, you can run:
 
