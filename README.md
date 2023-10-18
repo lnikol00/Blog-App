@@ -1,5 +1,5 @@
-## Starting Backend Server
-In order for login and register to work you will need to run backend server. In the project directory, you can run:
+## Backend - server
+In the project directory, you can run:
 
 ### `npm run dev`
 
@@ -18,7 +18,7 @@ Adding .env file:
 * DATABASE_URI - connection to MongoDB cluster.
 * ACCESS_TOKEN_SECRET &  REFRESH_TOKEN_SECRET - use require('crypto').randomBytes(64).toString('hex') command in node.
 
-## Starting Frontend
+## Frontend - client
 
 In the project directory, you can run:
 
