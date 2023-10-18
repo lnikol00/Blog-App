@@ -1,4 +1,4 @@
-## Backend - server
+# Backend - server
 In the project directory, you can run:
 
 ### `npm run dev`
@@ -18,7 +18,7 @@ Adding .env file:
 * DATABASE_URI - connection to MongoDB cluster.
 * ACCESS_TOKEN_SECRET &  REFRESH_TOKEN_SECRET - use require('crypto').randomBytes(64).toString('hex') command in node.
 
-## Frontend - client
+# Frontend - client
 
 In the project directory, you can run:
 
