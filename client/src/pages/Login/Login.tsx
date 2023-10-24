@@ -5,7 +5,7 @@ import { AxiosError } from 'axios'
 import styles from "./login.module.css"
 import useAuth from '../../components/hooks/useAuth'
 
-const LOGIN_URL = "/auth"
+const LOGIN_URL = "api/users/login"
 
 function Login() {
     const { setAuth, persist, setPersist } = useAuth();
