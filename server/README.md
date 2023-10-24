@@ -17,3 +17,4 @@ Adding .env file:
 
 * DATABASE_URI - connection to MongoDB cluster.
 * ACCESS_TOKEN_SECRET &  REFRESH_TOKEN_SECRET - use require('crypto').randomBytes(64).toString('hex') command in node.
+* PORT - set to 3500
