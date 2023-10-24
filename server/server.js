@@ -1,5 +1,5 @@
 require('dotenv').config();
-const ImportData = require('./DataImport.js')
+const ImportData = require('./utils/DataImport.js')
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -38,17 +38,16 @@ app.use(cookieParser());
 //API
 app.use("/api/import", ImportData);
 app.use('/api/blogs', require('./routes/blogs'));
+app.use('/api/users', require('./routes/users'))
 
-// routes
-app.use('/', require('./routes/root'));
-app.use('/register', require('./routes/register'));
-app.use('/auth', require('./routes/auth'));
+// Refresh Token
+// app.use('/register', require('./routes/register'));
+// app.use('/auth', require('./routes/auth'));
+// app.use('/logout', require('./routes/logout'));
 app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
 
+//Middleware
 app.use(verifyJWT);
-app.use('/users', require('./routes/api/users'));
-
 app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
