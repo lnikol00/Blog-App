@@ -17,7 +17,12 @@ export type ContextType = {
 const AuthContext = createContext<ContextType | null>(null);
 
 export const AuthProvider = ({ children }: AuthType) => {
-    const [auth, setAuth] = useState({})
+    const [auth, setAuth] = useState(() => {
+        const storedUserData = JSON.parse(`${localStorage.getItem("userData")}`);
+
+        // If user data exists, use it; otherwise, initialize as null or an empty object
+        return storedUserData || null;
+    })
     const [persist, setPersist] = useState(JSON.parse(`${localStorage.getItem("persist")}`) || false)
 
     return (
