@@ -42,6 +42,7 @@ function Login() {
             console.log(JSON.stringify(response?.data))
             const accessToken = response?.data?.accessToken;
             setAuth({ user, pwd, accessToken })
+            localStorage.setItem("userData", JSON.stringify({ user }))
             navigate(from, { replace: true })
         } catch (error) {
             const err = error as AxiosError
