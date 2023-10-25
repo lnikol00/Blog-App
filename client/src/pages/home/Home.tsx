@@ -31,11 +31,7 @@ function Home() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.heading}>
-                {auth?.user
-                    ?
-                    <h2 >Welcome back {auth?.user}!</h2>
-                    :
-                    <h2>My Home Page</h2>}
+                <h2 >Welcome back {auth.user}!</h2>
                 <label>
                     <input onChange={e => setSearch(e.target.value)} />
                     <BsIcons.BsSearch />
