@@ -5,8 +5,10 @@ import * as BsIcons from "react-icons/bs"
 import * as BiIcons from "react-icons/bi"
 import styles from "./home.module.css"
 import axios from 'axios';
+import useAuth from '../../components/hooks/useAuth';
 
 function BlogDetails() {
+    const { auth } = useAuth();
     const params = useParams();
     const navigate = useNavigate();
     const [open, setOpen] = useState<boolean>(false)
@@ -74,9 +76,13 @@ function BlogDetails() {
                         <article className={styles.article}>
                             <div className={styles.headingContainer}>
                                 <h2>{blog.title}</h2>
-                                <div className={styles.dots} onClick={openDropdown}>
-                                    <BsIcons.BsThreeDotsVertical />
-                                </div>
+                                {
+                                    (blog.author === auth.user) ?
+                                        <div className={styles.dots} onClick={openDropdown}>
+                                            <BsIcons.BsThreeDotsVertical />
+                                        </div> :
+                                        null
+                                }
                             </div>
                             {open ?
                                 <div className={styles.dropdown}>
@@ -119,7 +125,7 @@ function BlogDetails() {
                     }
                 </>
             }
-        </div>
+        </div >
     )
 }
 

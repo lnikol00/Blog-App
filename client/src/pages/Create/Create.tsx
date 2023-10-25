@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from "./create.module.css"
 import axios from 'axios';
+import useAuth from '../../components/hooks/useAuth';
 
 function Create() {
 
@@ -59,6 +60,8 @@ function Create() {
             titleRef.current.focus()
     }, [])
 
+    const { auth } = useAuth();
+
     return (
         <div className={styles.mainContainer}>
             <h2>Add a new Blog</h2>
@@ -78,8 +81,7 @@ function Create() {
                     value={author}
                     onChange={handleauthor}
                 >
-                    <option value="Luka">Luka</option>
-                    <option value="Marta">Marta</option>
+                    <option>{auth?.user}</option>
                 </select>
                 <button disabled={disabled}>Add Blog</button>
             </form>

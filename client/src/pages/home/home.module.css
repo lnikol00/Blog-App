@@ -135,6 +135,7 @@ label input {
     cursor: pointer;
 }
 
+
 .dropdown {
     position: absolute;
     right: 10em;
@@ -168,6 +169,10 @@ label input {
 .dropdown .delete:hover {
     background-color: #f1356d;
     color: white;
+}
+
+.empty {
+    display: none;
 }
 
 @media screen and (max-width: 1200px) {
