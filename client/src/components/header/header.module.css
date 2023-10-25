@@ -101,11 +101,6 @@
         display: table;
     }
 
-    .menuLinks:hover {
-        background-color: #fff;
-        border-radius: 0;
-    }
-
     .headerContainer h1 {
         font-size: 24px;
     }
