@@ -7,7 +7,7 @@ import BlogDetails from './pages/home/BlogDetails';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
-import Layout from './components/hooks/Layout';
+import Layout from './components/context/Layout';
 import RequireAuth from './components/context/RequireAuth';
 import PersistLogin from './components/context/PersistLogin';
 
