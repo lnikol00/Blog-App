@@ -1,5 +1,7 @@
 # Backend - server
 
+In the project directory, you can run:
+
 ### `npm run dev`
 
 The command npm run dev is typically used in a Node.js-based project to start a development server or perform other development-related tasks. Here's what this command does:
