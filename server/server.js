@@ -41,9 +41,6 @@ app.use('/api/blogs', require('./routes/blogs'));
 app.use('/api/users', require('./routes/users'))
 
 // Refresh Token
-// app.use('/register', require('./routes/register'));
-// app.use('/auth', require('./routes/auth'));
-// app.use('/logout', require('./routes/logout'));
 app.use('/refresh', require('./routes/refresh'));
 
 //Middleware
