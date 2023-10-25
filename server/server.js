@@ -1,5 +1,4 @@
 require('dotenv').config();
-const ImportData = require('./utils/DataImport.js')
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -36,7 +35,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //API
-app.use("/api/import", ImportData);
+app.use("/api/import", require('./utils/DataImport'));
 app.use('/api/blogs', require('./routes/blogs'));
 app.use('/api/users', require('./routes/users'))
 
