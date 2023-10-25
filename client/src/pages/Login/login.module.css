@@ -1,8 +1,10 @@
 .mainContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 7em auto;
+    align-items: flex-start;
     background-color: rgb(188, 110, 110);
     padding: 20px;
 }
@@ -112,4 +114,10 @@
 [type="checkbox"] {
     height: 20px;
     width: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .mainContainer {
+        margin: 3em auto;
+    }
 }
