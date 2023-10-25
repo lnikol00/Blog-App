@@ -189,6 +189,11 @@ label input {
         padding: 0.5rem;
         width: 600px;
     }
+
+    .dropdown {
+        top: 10em;
+        right: 20em;
+    }
 }
 
 @media screen and (max-width:600px) {
@@ -228,5 +233,10 @@ label input {
     .article textarea {
         padding: 0.5rem;
         width: 350px;
+    }
+
+    .dropdown {
+        top: 10em;
+        right: 1em;
     }
 }
