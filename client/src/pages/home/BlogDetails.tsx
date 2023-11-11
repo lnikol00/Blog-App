@@ -5,7 +5,7 @@ import * as BsIcons from "react-icons/bs"
 import * as BiIcons from "react-icons/bi"
 import styles from "./home.module.css"
 import axios from 'axios';
-import useAuth from '../../components/hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 function BlogDetails() {
     const { auth } = useAuth();

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from '../../components/api/axios'
 import { AxiosError } from 'axios'
 import styles from "./login.module.css"
-import useAuth from '../../components/hooks/useAuth'
+import useAuth from '../../hooks/useAuth'
 
 const LOGIN_URL = "api/users/login"
 

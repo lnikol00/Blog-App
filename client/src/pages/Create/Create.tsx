@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from "./create.module.css"
 import axios from 'axios';
-import useAuth from '../../components/hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 function Create() {
 

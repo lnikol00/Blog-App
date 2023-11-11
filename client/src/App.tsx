@@ -1,4 +1,4 @@
-import './App.css';
+import './assets/global.css';
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
@@ -7,9 +7,9 @@ import BlogDetails from './pages/home/BlogDetails';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
-import Layout from './components/context/Layout';
-import RequireAuth from './components/context/RequireAuth';
-import PersistLogin from './components/context/PersistLogin';
+import Layout from './context/Layout';
+import RequireAuth from './context/RequireAuth';
+import PersistLogin from './context/PersistLogin';
 
 function App() {
   return (

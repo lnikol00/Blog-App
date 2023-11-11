@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './components/context/AuthProvider';
+import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(

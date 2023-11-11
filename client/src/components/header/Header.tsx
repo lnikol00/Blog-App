@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import styles from "./header.module.css"
-import useLogout from '../hooks/useLogout'
-import useAuth from '../hooks/useAuth'
+import useLogout from '../../hooks/useLogout'
+import useAuth from '../../hooks/useAuth'
 import { Link } from 'react-router-dom'
 
 function Header() {

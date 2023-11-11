@@ -1,4 +1,4 @@
-import axios from "../api/axios";
+import axios from "../components/api/axios";
 import useAuth from "./useAuth";
 
 function useLogout() {

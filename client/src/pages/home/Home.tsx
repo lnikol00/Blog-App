@@ -1,5 +1,5 @@
 import styles from "./home.module.css"
-import useAuth from "../../components/hooks/useAuth"
+import useAuth from "../../hooks/useAuth"
 import { useEffect, useState } from "react"
 import * as BsIcons from "react-icons/bs"
 import { Link } from "react-router-dom"
