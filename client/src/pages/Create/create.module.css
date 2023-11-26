@@ -72,7 +72,7 @@
 @media screen and (max-width:600px) {
 
     .mainContainer {
-        margin: 45px;
+        margin: 5px 45px 50px;
     }
 
     .mainContainer input,
