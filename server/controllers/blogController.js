@@ -20,6 +20,7 @@ const getSingleBlog = async (req, res) => {
 //CREATE BLOG
 const createBlog = async (req, res) => {
     const { title, author, body } = req.body;
+    if (!title || !author || !body) return res.status(400).send({ 'message': 'Title, body and author are required.' });
 
     //create and store the new blog
     const newBlog = new Blog({
@@ -52,7 +53,7 @@ const editBlog = async (req, res) => {
         res.json(updateBlog);
     } else {
         res.status(400);
-        throw new Error("Invalid product data")
+        throw new Error("Invalid blog data")
     }
 }
 
