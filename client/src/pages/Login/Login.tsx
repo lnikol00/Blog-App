@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from '../../components/api/axios'
 import { AxiosError } from 'axios'
 import styles from "./login.module.css"
 import useAuth from '../../hooks/useAuth'
-
-const LOGIN_URL = "api/users/login"
 
 function Login() {
     const { setAuth, persist, setPersist } = useAuth();
@@ -32,7 +30,7 @@ function Login() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post(LOGIN_URL,
+            const response = await axios.post("api/users/login",
                 JSON.stringify({ user, pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },

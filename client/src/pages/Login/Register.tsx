@@ -10,7 +10,6 @@ import styles from "./login.module.css"
 
 const USER_REGEX = /^[A-Za-z0-9-_]{4,24}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
-const REGISTER_URL = 'api/users/register'
 
 function Register() {
     const userRef = useRef<null | HTMLInputElement>(null)
@@ -67,7 +66,7 @@ function Register() {
             return;
         }
         try {
-            const response = await axios.post(REGISTER_URL,
+            const response = await axios.post('api/users/register',
                 JSON.stringify({ user, pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },

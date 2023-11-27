@@ -12,7 +12,7 @@ function Create() {
 
     const [title, setTitle] = useState<string>("")
     const [body, setBody] = useState<string>("")
-    const [author, setAuthor] = useState<string>("")
+    const [author, setAuthor] = useState<string>("aa")
 
     const [errMsg, setErrMsg] = useState('')
     const errRef = useRef<null | HTMLParagraphElement>(null)
@@ -67,7 +67,7 @@ function Create() {
                 <label>
                     Blog body:
                 </label>
-                <textarea value={body} onChange={(e) => setBody(e.target.value)} />
+                <textarea required value={body} onChange={(e) => setBody(e.target.value)} />
                 <label>
                     Blog author:
                 </label>

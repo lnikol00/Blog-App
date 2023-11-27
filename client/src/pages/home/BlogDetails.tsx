@@ -23,7 +23,7 @@ function BlogDetails() {
 
     useEffect(() => {
         setErrMsg('');
-    }, [blog])
+    }, [blog, title, author, body])
 
     useEffect(() => {
         setTitle(`${blog?.title}`)
@@ -52,30 +52,50 @@ function BlogDetails() {
         fetchblogs();
     }, [params])
 
-    const handleDelete = () => {
-        axios.delete(`/api/blogs/${params.id}`
-        ).then(() => {
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`/api/blogs/${params.id}`)
             console.log("Blog deleted")
             navigate("/")
-        })
+        } catch (error) {
+            const err = error as AxiosError
+            if (err.response?.status === 404) {
+                setErrMsg("Blog not found")
+            }
+            if (errRef.current)
+                errRef.current.focus();
+        }
     }
 
-    const handleEdit = () => {
-        const updateBlog = {
-            title: title,
-            author: author,
-            body: body,
-        }
-        axios.put(`/api/blogs/${params.id}`, JSON.stringify(updateBlog), {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-        }
-        ).then(() => {
-            console.log("blog updated")
+    const handleEdit = async () => {
+        try {
+
+            const updateBlog = {
+                title: title,
+                author: author,
+                body: body
+            }
+
+            const editBlog = await axios.put(`/api/blogs/${params.id}`, JSON.stringify(updateBlog), {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+            })
+            console.log(editBlog.data);
+            console.log("Blog Edited");
             window.location.reload();
-        })
+        } catch (error) {
+            const err = error as AxiosError
+            if (!err.response) {
+                setErrMsg("Server not responding")
+            }
+            else if (err.response?.status === 400) {
+                setErrMsg("Title, author and body are required!")
+            }
+            if (errRef.current)
+                errRef.current.focus();
+        }
         setEdit(!edit)
     }
 
