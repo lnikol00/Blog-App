@@ -2,11 +2,11 @@ import './assets/global.css';
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
-import Create from './pages/Create/Create';
+import Create from './pages/create/Create';
 import BlogDetails from './pages/home/BlogDetails';
-import NotFound from './pages/NotFound/NotFound';
-import Login from './pages/Login/Login';
-import Register from './pages/Login/Register';
+import NotFound from './pages/notFound/NotFound';
+import Login from './pages/login/Login';
+import Register from './pages/login/Register';
 import Layout from './context/Layout';
 import RequireAuth from './context/RequireAuth';
 import PersistLogin from './context/PersistLogin';
