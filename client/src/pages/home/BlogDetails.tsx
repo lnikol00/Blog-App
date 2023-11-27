@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { BlogType } from './Home';
 import * as BsIcons from "react-icons/bs"
 import * as BiIcons from "react-icons/bi"
 import styles from "./home.module.css"
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import useAuth from '../../hooks/useAuth';
 
 function BlogDetails() {
@@ -18,6 +18,13 @@ function BlogDetails() {
     const [author, setAuthor] = useState<string>('')
     const [blog, setBlog] = useState<BlogType>()
 
+    const [errMsg, setErrMsg] = useState('')
+    const errRef = useRef<null | HTMLParagraphElement>(null)
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [blog])
+
     useEffect(() => {
         setTitle(`${blog?.title}`)
         setAuthor(`${blog?.author}`)
@@ -26,8 +33,21 @@ function BlogDetails() {
 
     useEffect(() => {
         const fetchblogs = async () => {
-            const { data } = await axios.get(`/api/blogs/${params.id}`)
-            setBlog(data);
+            try {
+                const { data } = await axios.get(`/api/blogs/${params.id}`)
+                setBlog(data);
+            }
+            catch (error) {
+                const err = error as AxiosError
+                if (!err.response) {
+                    setErrMsg("No server response")
+                }
+                else if (err.response?.status === 404) {
+                    setErrMsg("Blog not found")
+                }
+                if (errRef.current)
+                    errRef.current.focus();
+            }
         }
         fetchblogs();
     }, [params])
@@ -70,6 +90,9 @@ function BlogDetails() {
 
     return (
         <div className={styles.mainContainer}>
+            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                {errMsg}
+            </p>
             {
                 edit ? <>
                     {blog &&
@@ -77,7 +100,7 @@ function BlogDetails() {
                             <div className={styles.headingContainer}>
                                 <h2>{blog.title}</h2>
                                 {
-                                    (blog.author === auth.user) ?
+                                    (blog.author !== auth.user) ?
                                         <div className={styles.dots} onClick={openDropdown}>
                                             <BsIcons.BsThreeDotsVertical />
                                         </div> :

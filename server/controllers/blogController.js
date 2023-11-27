@@ -12,8 +12,7 @@ const getSingleBlog = async (req, res) => {
     if (blog) {
         res.json(blog)
     } else {
-        res.status(404);
-        throw new Error("Blog not found");
+        res.sendStatus(404);
     }
 }
 
@@ -33,8 +32,7 @@ const createBlog = async (req, res) => {
         const createNewBlog = await newBlog.save();
         res.status(201).json(createNewBlog);
     } else {
-        res.status(400);
-        throw new Error("Invalid blog data")
+        res.sendStatus(400);
     }
 }
 
@@ -52,8 +50,7 @@ const editBlog = async (req, res) => {
         const updateBlog = await blog.save();
         res.json(updateBlog);
     } else {
-        res.status(400);
-        throw new Error("Invalid blog data")
+        res.sendStatus(400);
     }
 }
 
@@ -65,11 +62,9 @@ const deleteBlog = async (req, res) => {
         await blog.remove();
         res.json({ message: "Blog deleted" });
     } else {
-        res.status(404);
-        throw new Error("Blog not found")
+        res.sendStatus(404);
     }
 }
-
 
 module.exports = {
     getAllBlogs,

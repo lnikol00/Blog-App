@@ -12,9 +12,14 @@ function Create() {
 
     const [title, setTitle] = useState<string>("")
     const [body, setBody] = useState<string>("")
-    const [author, setAuthor] = useState<string>("Luka")
+    const [author, setAuthor] = useState<string>("")
 
-    const [errMsg, setErrMsg] = useState<string>("")
+    const [errMsg, setErrMsg] = useState('')
+    const errRef = useRef<null | HTMLParagraphElement>(null)
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [title, body, author])
 
     const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -30,9 +35,14 @@ function Create() {
             navigate("/")
         } catch (error) {
             const err = error as AxiosError
-            if (err.response?.status === 400) {
+            if (!err.response) {
+                setErrMsg("No server response")
+            }
+            else if (err.response?.status === 400) {
                 setErrMsg("Missing title, body or author")
             }
+            if (errRef.current)
+                errRef.current.focus();
         }
     }
 
@@ -46,6 +56,9 @@ function Create() {
     return (
         <div className={styles.mainContainer}>
             <h2>Add a new Blog</h2>
+            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                {errMsg}
+            </p>
             <form onSubmit={handleSumbit} ref={form}>
                 <label>
                     Blog title:
@@ -54,7 +67,7 @@ function Create() {
                 <label>
                     Blog body:
                 </label>
-                <textarea required value={body} onChange={(e) => setBody(e.target.value)} />
+                <textarea value={body} onChange={(e) => setBody(e.target.value)} />
                 <label>
                     Blog author:
                 </label>

@@ -1,9 +1,10 @@
 import styles from "./home.module.css"
 import useAuth from "../../hooks/useAuth"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as BsIcons from "react-icons/bs"
 import { Link } from "react-router-dom"
 import axios from "../../components/api/axios"
+import { AxiosError } from "axios"
 
 export type BlogType = {
     _id: number | string,
@@ -19,10 +20,26 @@ function Home() {
     const [search, setSearch] = useState<string>('')
     const [blogs, setBlogs] = useState<BlogsType>([])
 
+    const [errMsg, setErrMsg] = useState('')
+    const errRef = useRef<null | HTMLParagraphElement>(null)
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [blogs])
+
     useEffect(() => {
         const fetchblogs = async () => {
-            const { data } = await axios.get("/api/blogs")
-            setBlogs(data);
+            try {
+                const { data } = await axios.get("/api/blogs")
+                setBlogs(data);
+            } catch (error) {
+                const err = error as AxiosError
+                if (!err.response) {
+                    setErrMsg("No server response");
+                }
+                if (errRef.current)
+                    errRef.current.focus();
+            }
         }
         fetchblogs();
 
@@ -38,6 +55,9 @@ function Home() {
                 </label>
             </div>
             <span>Your blogs are:</span>
+            <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
+                {errMsg}
+            </p>
             {blogs &&
                 blogs.filter((blog) => {
                     if (search === "") {
