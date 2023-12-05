@@ -120,7 +120,7 @@ function BlogDetails() {
                             <div className={styles.headingContainer}>
                                 <h2>{blog.title}</h2>
                                 {
-                                    (blog.author !== auth.user) ?
+                                    (blog.author === auth.user) ?
                                         <div className={styles.dots} onClick={openDropdown}>
                                             <BsIcons.BsThreeDotsVertical />
                                         </div> :
