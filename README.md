@@ -8,7 +8,7 @@ Clone the repository into your projects directory:
 
 The "Blog App" is a web application that allows users to read and write blogs.
 
-Simple web application made for educational purposes.
+## Simple web application made for educational purposes.
 
 * Learning and understanding how Typescript works. <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
 
