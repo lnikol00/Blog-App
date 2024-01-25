@@ -4,7 +4,7 @@ Clone the repository into your projects directory:
 
 ### `git clone git@github.com:lnikol00/blog-react.git`
 
-'''
+'''bash
 git clone git@github.com:lnikol00/blog-react.git
 '''
 
