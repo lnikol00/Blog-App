@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import axios from '../../components/api/axios'
-import { AxiosError } from 'axios'
 import styles from "./login.module.css"
 import useAuth from '../../hooks/useAuth'
 
 function Login() {
-    const { setAuth, persist, setPersist } = useAuth();
+    const { handleLogin, persist, setPersist, errMsg, setErrMsg } = useAuth();
     const userRef = useRef<null | HTMLInputElement>(null)
     const errRef = useRef<null | HTMLParagraphElement>(null)
     const navigate = useNavigate()
@@ -15,7 +13,6 @@ function Login() {
 
     const [user, setUser] = useState('')
     const [pwd, setPwd] = useState('')
-    const [errMsg, setErrMsg] = useState('')
 
     useEffect(() => {
         if (userRef.current) {
@@ -27,49 +24,14 @@ function Login() {
         setErrMsg('');
     }, [user, pwd])
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            const response = await axios.post("api/users/login",
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            )
-            console.log(JSON.stringify(response?.data))
-            const accessToken = response?.data?.accessToken;
-            setAuth({ user, pwd, accessToken })
-            localStorage.setItem("userData", JSON.stringify({ user }))
-            navigate(from, { replace: true })
-        } catch (error) {
-            const err = error as AxiosError
-            if (!err?.response) {
-                setErrMsg("No server Response")
-            }
-            else if (err.response?.status === 400) {
-                setErrMsg("Missing username or password")
-            }
-            else if (err.response?.status === 401) {
-                setErrMsg("Unauthorized")
-            }
-            else {
-                setErrMsg("Login Failed")
-            }
-            if (errRef.current)
-                errRef.current.focus();
-        }
-    }
+        handleLogin(user, pwd, navigate, from);
+    };
 
     const togglePersist = () => {
         setPersist((prev: any) => !prev);
     }
-
-    useEffect(() => {
-        localStorage.setItem("persist", persist);
-    }, [persist])
-
-
 
     return (
 
