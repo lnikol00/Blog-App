@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BlogProvider } from './context/BlogProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +13,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path='/*' element={<App />} />
-        </Routes>
+        <BlogProvider>
+          <Routes>
+            <Route path='/*' element={<App />} />
+          </Routes>
+        </BlogProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

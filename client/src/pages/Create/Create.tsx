@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from "./create.module.css"
 import axios, { AxiosError } from 'axios';
 import useAuth from '../../hooks/useAuth';
+import useBlog from '../../hooks/useBlog';
 
 function Create() {
 
+    const { handleCreate, errMsg, setErrMsg } = useBlog();
     const form = useRef<HTMLFormElement>(null);
     const titleRef = useRef<HTMLInputElement>(null)
     const navigate = useNavigate();
@@ -14,37 +16,17 @@ function Create() {
     const [body, setBody] = useState<string>("")
     const [author, setAuthor] = useState<string>("aa")
 
-    const [errMsg, setErrMsg] = useState('')
     const errRef = useRef<null | HTMLParagraphElement>(null)
 
     useEffect(() => {
         setErrMsg('');
     }, [title, body, author])
 
-    const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            const newBlog = await axios.post('/api/blogs',
-                JSON.stringify({ title, author, body, }),
-                {
-                    headers: { "Content-Type": "application/json" },
-                    withCredentials: true
-                }
-            )
-            console.log(newBlog.data);
-            navigate("/")
-        } catch (error) {
-            const err = error as AxiosError
-            if (!err.response) {
-                setErrMsg("No server response")
-            }
-            else if (err.response?.status === 400) {
-                setErrMsg("Missing title, body or author")
-            }
-            if (errRef.current)
-                errRef.current.focus();
-        }
-    }
+        await handleCreate(title, author, body);
+        navigate("/");
+    };
 
     useEffect(() => {
         if (titleRef.current)
@@ -59,7 +41,7 @@ function Create() {
             <p ref={errRef} className={errMsg ? `${styles.errmsg}` : `${styles.offscreen}`} aria-live="assertive">
                 {errMsg}
             </p>
-            <form onSubmit={handleSumbit} ref={form}>
+            <form onSubmit={handleSubmit} ref={form}>
                 <label>
                     Blog title:
                 </label>

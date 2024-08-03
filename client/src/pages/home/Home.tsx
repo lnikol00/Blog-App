@@ -3,8 +3,7 @@ import useAuth from "../../hooks/useAuth"
 import { useEffect, useRef, useState } from "react"
 import * as BsIcons from "react-icons/bs"
 import { Link } from "react-router-dom"
-import axios from "../../components/api/axios"
-import { AxiosError } from "axios"
+import useBlog from "../../hooks/useBlog"
 
 export type BlogType = {
     _id: number | string,
@@ -13,12 +12,11 @@ export type BlogType = {
     body: string
 }
 
-type BlogsType = Array<BlogType>
-
 function Home() {
     const { auth } = useAuth();
+    const { fetchBlogs, blogs } = useBlog();
     const [search, setSearch] = useState<string>('')
-    const [blogs, setBlogs] = useState<BlogsType>([])
+
 
     const [errMsg, setErrMsg] = useState('')
     const errRef = useRef<null | HTMLParagraphElement>(null)
@@ -28,22 +26,8 @@ function Home() {
     }, [blogs])
 
     useEffect(() => {
-        const fetchblogs = async () => {
-            try {
-                const { data } = await axios.get("/api/blogs")
-                setBlogs(data);
-            } catch (error) {
-                const err = error as AxiosError
-                if (!err.response) {
-                    setErrMsg("No server response");
-                }
-                if (errRef.current)
-                    errRef.current.focus();
-            }
-        }
-        fetchblogs();
-
-    }, [])
+        fetchBlogs();
+    }, []);
 
     return (
         <div className={styles.mainContainer}>
